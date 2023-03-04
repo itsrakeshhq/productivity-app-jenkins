@@ -1,12 +1,6 @@
 pipeline {
     agent any
 
-    agent {
-        docker {
-            image 'node:lts-bullseye-slim'
-        }
-    }
-    
     stages {
         stage('Checkout') {
             steps {
