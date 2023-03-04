@@ -42,7 +42,6 @@ pipeline {
         steps {
             sh 'docker build -t rakeshpotnuru/productivity-app:client-${env.BUILD_NUMBER} client'
             sh 'docker build -t rakeshpotnuru/productivity-app:server-${env.BUILD_NUMBER} server'
-            sh 'docker build -t rakeshpotnuru/productivity-app:nginx-${env.BUILD_NUMBER} nginx'
         }
     }
     
@@ -52,7 +51,6 @@ pipeline {
                 sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
                 sh 'docker push rakeshpotnuru/productivity-app:client-${env.BUILD_NUMBER}'
                 sh 'docker push rakeshpotnuru/productivity-app:server-${env.BUILD_NUMBER}'
-                sh 'docker push rakeshpotnuru/productivity-app:nginx-${env.BUILD_NUMBER}'
             }
         }
     }
