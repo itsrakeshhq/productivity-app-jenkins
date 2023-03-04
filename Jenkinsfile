@@ -39,8 +39,8 @@ pipeline {
         
         stage('Build Images') {
             steps {
-                sh 'docker build -t rakeshpotnuru/productivity-app:client-${env.BUILD_NUMBER} client'
-                sh 'docker build -t rakeshpotnuru/productivity-app:server-${env.BUILD_NUMBER} server'
+                sh 'docker build -t rakeshpotnuru/productivity-app:client-latest client'
+                sh 'docker build -t rakeshpotnuru/productivity-app:server-latest server'
             }
         }
         
@@ -48,8 +48,8 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push rakeshpotnuru/productivity-app:client-${env.BUILD_NUMBER}'
-                    sh 'docker push rakeshpotnuru/productivity-app:server-${env.BUILD_NUMBER}'
+                    sh 'docker push rakeshpotnuru/productivity-app:client-latest'
+                    sh 'docker push rakeshpotnuru/productivity-app:server-latest'
                 }
             }
         }
