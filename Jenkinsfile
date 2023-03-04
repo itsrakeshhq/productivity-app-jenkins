@@ -1,8 +1,10 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'Default'
+    agent {
+        docker {
+            image 'node:lts-bullseye-slim'
+        }
     }
     
     stages {
